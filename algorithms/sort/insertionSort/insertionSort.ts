@@ -3,6 +3,8 @@ export function insertionSort(array: number[]): number[] {
         for(let cur=i; cur >= 0; cur--) {
             if (array[cur] < array[cur-1]) {
                 swap(array, cur-1, cur);
+            } else {
+                break;
             }
         }
     }
