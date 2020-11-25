@@ -6,19 +6,20 @@ export function mergeSort(array: number[]): number[] {
     const mid = Math.floor(array.length / 2);
     const left = array.slice(0, mid);
     const right = array.slice(mid, array.length);
-    
+    console.log('before merge:', left,right);
     return merge(mergeSort(left), mergeSort(right));
 }
 
-function merge(left: number[], right: number[]): number[] {
+const merge = (left: number[], right: number[]): number[] => {
     const array = [];
     let leftIndex = 0;
     let rightIndex = 0;
 
-    while(leftIndex < left.length || rightIndex < right.length) {
+    while(leftIndex < left.length && rightIndex < right.length) {
         let leftElement = left[leftIndex];
         let rightElement = right[rightIndex];
-
+        console.log( 'leftIndex', leftIndex);
+        console.log( 'rightIndex', rightIndex);
         if (!leftElement) {
             array.push(rightElement);
             rightIndex++;
@@ -34,7 +35,7 @@ function merge(left: number[], right: number[]): number[] {
         }
 
     }
-    console.log(left,right)
+    console.log('merging',left,right)
     console.log('result', array);
     return array;
 }

@@ -12,9 +12,10 @@ export function insertionSort(array: number[]): number[] {
 }
 
 const swap = (arr: number[], i1, i2): void => {
-    const first = arr[i2];    
-    const second = arr[i1];
+    // const first = arr[i2];    
+    // const second = arr[i1];
     
-    arr[i1]=first;
-    arr[i2]=second;
+    // arr[i1]=first;
+    // arr[i2]=second;
+    [arr[i1], arr[i2]] = [arr[i2], arr[i1]];
 }
