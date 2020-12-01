@@ -5,13 +5,10 @@ const isSubsequence = (sub: string, sequence: string): boolean => {
         return true;
     }
 
-
+    // is sequence is shorter than sub string, it can't be true
     if (sequence.length < sub.length) {
         return false;
     }
-
-    let first = 0;
-    let second = 0;
 
     // have 2 pointers, for each string
 
@@ -20,14 +17,19 @@ const isSubsequence = (sub: string, sequence: string): boolean => {
     // if not move 2nd pointer
     // if first pointer is same as length , we are done
 
-    while (second < sequence.length) {
-        if (sub[first] === sequence[second]) {
-            first++;
-        }
-        if (first === sub.length)
-            return true
+    let firstWordPointer = 0;
+    let secondWordPointer = 0;
 
-        second++;
+    while (secondWordPointer < sequence.length) {
+        if (sub[firstWordPointer] === sequence[secondWordPointer]) {
+            firstWordPointer++
+        }
+
+        if (firstWordPointer === sub.length) {
+            return true;
+        }
+
+        secondWordPointer++
     }
 
     return false;
