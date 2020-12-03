@@ -28,5 +28,3 @@ const minSubArrayLen = (nums: number[], sum: number): number => {
     return minLen === Infinity ? 0 : minLen;
 
 }
-
-console.log('Res:', minSubArrayLen([2, 3, 1, 2, 4, 3], 7));
