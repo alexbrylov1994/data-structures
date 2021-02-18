@@ -1,5 +1,5 @@
 export const quickSort = (array: number[]): number[] => {
-    partition(array, 0, array.length - 1);
+    partition(array, 0, array.length);
     return array;
 }
 
