@@ -1,38 +1,36 @@
 export const quickSort = (array: number[]): number[] => {
-    partition(array, 0, array.length);
+    quickSortRecursive(array, 0, array.length);
     return array;
 }
 
-const partition = (array: number[], left: number, right: number): void => {
-    const length = right - left;
+const quickSortRecursive = (array: number[], left: number, right: number): void => {
+    if (left >= right) {
+        return;
+    }
 
-    /** Terminate the recursion */
-    if (length <= 1) return;
+    const pivot = array[(left + right) / 2]; // center , can be start 
+    const index = partition(array, left, right, pivot);
+    quickSortRecursive(array, left, index - 1);
+    quickSortRecursive(array, index, right);
+}
 
-    /** Randomly select a pivot and move it to the head of the array */
-    const pivotIndex = left + Math.floor(Math.random() * length);
-    [array[left], array[pivotIndex]] = [array[pivotIndex], array[left]];
+const partition = (array: number[], left: number, right: number, pivot: number): number => {
+    while (left <= right) {
+        while (array[left] < pivot) {
+            left++;
+        } 
 
-    /** The first element is our pivot */
-    const pivot = array[left];
-    let pivotRank = left;
+        while (array[right] > pivot) {
+            right--;
+        }
 
-    /** Loop through all the elements, partitioning around the pivot */
-    for (let index = left + 1; index < right; index++) {
-        if (array[index] < pivot) {
-            pivotRank++;
-            [array[index], array[pivotRank]] = [array[pivotRank], array[index]];
+        if (left <= right) {
+            //swap 
+            [array[left], array[right]] = [array[right], array[left]];
+            left++;
+            right--;
         }
     }
 
-    /** Finally put the pivot at its rightfull place */
-    if (pivotRank !== left) {
-        [array[pivotRank], array[left]] = [array[left], array[pivotRank]];
-    }
-
-    /** Partition all the elements less than the pivot */
-    partition(array, left, pivotRank);
-
-    /** Partition all the elements more than the pivot */
-    partition(array, pivotRank + 1, right);
+    return left; // diving point between left and right
 }
