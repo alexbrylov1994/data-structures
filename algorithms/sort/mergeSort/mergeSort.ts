@@ -1,4 +1,4 @@
-export function mergeSort(array: number[]): number[] {
+export const mergeSort = (array: number[]): number[] => {
     if (array.length <= 1) {
         return array;
     }
