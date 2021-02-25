@@ -1,12 +1,13 @@
 import { strict } from "assert";
 
 const reverse = (str: string): string => {
-    const arr = str.split('');
     const reverseArr = [];
 
-    arr.forEach((el: string) => {
-        reverseArr.unshift(el);
-    });
+    for (let i = str.length - 1; i >= 0; i--) {
+        reverseArr.push(str[i]);
+    }
 
     return reverseArr.join('');
 }
+
+reverse('1234');
