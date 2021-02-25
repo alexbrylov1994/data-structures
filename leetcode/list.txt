@@ -1,0 +1,5 @@
+217. Contains Duplicate
+189. Rotate Array
+1. Two Sum
+53. Maximum Subarray
+283. Move Zeroes
