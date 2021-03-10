@@ -14,10 +14,12 @@ export default class LinkedList {
 
         if (!this.head) {
             this.head = node;
-            this.tail = node;
         }
 
-        this.tail.next = node;
+        if (this.tail) {
+            this.tail.next = node;
+        }
+
         this.tail = node;
     }
 
