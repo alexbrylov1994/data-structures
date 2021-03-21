@@ -1,4 +1,5 @@
-import { LinkedList } from 'mnemonist';
+import LinkedList from '../linkedList/linkedList'
+
 // export class Queue<T> {
 //     private data: T[] = [];
 
@@ -20,23 +21,23 @@ import { LinkedList } from 'mnemonist';
 // }
 
 export default class Queue {
-    linkedList: LinkedList<string>;
+    linkedList: LinkedList;
     constructor() {
         this.linkedList = new LinkedList();
     }
     enqueue(value) {
-        this.linkedList.push(value);
+        this.linkedList.append(value);
     }
 
     dequeue() {
-        return this.linkedList.shift();
+        return this.linkedList.deleteHead();
     }
 
     peek() {
-        if (!this.linkedList.size) {
+        if (!this.linkedList.head) {
             return null;
         }
 
-        return this.linkedList.first;
+        return this.linkedList.head.value;
     }
 }

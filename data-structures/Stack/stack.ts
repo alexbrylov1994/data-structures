@@ -1,5 +1,5 @@
-import { LinkedList } from "mnemonist";
-// import LinkedList from '../linkedList/linkedList'
+// import { LinkedList } from "mnemonist";
+import LinkedList from '../linkedList/linkedList'
 
 // export class Stack<T> {
 //     private data: T[] = [];
@@ -22,26 +22,23 @@ import { LinkedList } from "mnemonist";
 // }
 
 export default class Stack {
-    linkedList: LinkedList<string>;
+    linkedList: LinkedList;
     constructor() {
         this.linkedList = new LinkedList();
     }
     push(value) {
-        this.linkedList.unshift(value);
+        this.linkedList.prepend(value);
     }
 
     pop() {
-        return this.linkedList.shift();
+        return this.linkedList.deleteHead().value;
     }
 
     peek() {
-        if (!this.linkedList.size) {
+        if (!this.linkedList.head) {
             return null;
         }
 
-        return this.linkedList.first
+        return this.linkedList.head.value
     }
 }
-
-const stack = new Stack();
-stack.push('0');
