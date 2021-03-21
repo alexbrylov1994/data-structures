@@ -1,19 +1,47 @@
-export class Stack<T> {
-    private data: T[] = [];
+import { LinkedList } from "mnemonist";
+// import LinkedList from '../linkedList/linkedList'
 
-    push(el: T): void {
-        this.data.push(el);
+// export class Stack<T> {
+//     private data: T[] = [];
+
+//     push(el: T): void {
+//         this.data.push(el);
+//     }
+
+//     pop(): T | undefined {
+//        return this.data.pop();
+//     }
+
+//     size(): number {
+//         return this.data.length;
+//     }
+
+//     isEmpty(): boolean {
+//         return !!this.data.length;;
+//     }
+// }
+
+export default class Stack {
+    linkedList: LinkedList<string>;
+    constructor() {
+        this.linkedList = new LinkedList();
+    }
+    push(value) {
+        this.linkedList.unshift(value);
     }
 
-    pop(): T | undefined {
-       return this.data.pop();
+    pop() {
+        return this.linkedList.shift();
     }
 
-    size(): number {
-        return this.data.length;
-    }
+    peek() {
+        if (!this.linkedList.size) {
+            return null;
+        }
 
-    isEmpty(): boolean {
-        return !!this.data.length;;
+        return this.linkedList.first
     }
 }
+
+const stack = new Stack();
+stack.push('0');

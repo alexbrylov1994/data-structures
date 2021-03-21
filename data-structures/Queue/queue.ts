@@ -1,19 +1,42 @@
-export class Queue<T> {
-    private data: T[] = [];
+import { LinkedList } from 'mnemonist';
+// export class Queue<T> {
+//     private data: T[] = [];
 
-    enqueue(el: T): void {
-        this.data.push(el);
+//     enqueue(el: T): void {
+//         this.data.push(el);
+//     }
+
+//     dequeue(): T | undefined {
+//         return this.data.shift();
+//     }
+
+//     isEmpty() {
+//         return !!this.data.length;
+//     }
+
+//     size() {
+//         return this.data.length;
+//     }
+// }
+
+export default class Queue {
+    linkedList: LinkedList<string>;
+    constructor() {
+        this.linkedList = new LinkedList();
+    }
+    enqueue(value) {
+        this.linkedList.push(value);
     }
 
-    dequeue(): T | undefined {
-        return this.data.shift();
+    dequeue() {
+        return this.linkedList.shift();
     }
 
-    isEmpty() {
-        return !!this.data.length;
-    }
+    peek() {
+        if (!this.linkedList.size) {
+            return null;
+        }
 
-    size() {
-        return this.data.length;
+        return this.linkedList.first;
     }
 }
