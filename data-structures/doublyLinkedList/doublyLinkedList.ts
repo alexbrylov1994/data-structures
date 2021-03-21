@@ -40,6 +40,7 @@ export default class DoublyLinkedList {
             // No tail to delete.
             return null;
         }
+
         const deletedTail = this.tail;
 
         if (this.head === this.tail) {

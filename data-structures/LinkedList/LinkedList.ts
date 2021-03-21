@@ -122,6 +122,8 @@ export default class LinkedList {
     }
 
     deleteTail() {
+        const deletedTail = this.tail;
+
         if (this.head === this.tail) {
             // There is only one node in linked list.
             this.head = null;
@@ -138,6 +140,8 @@ export default class LinkedList {
         }
 
         this.tail = currentNode;
+
+        return deletedTail;
     }
 
     deleteHead() {
@@ -145,12 +149,16 @@ export default class LinkedList {
             return null;
         }
 
+        const deletedHead = this.head;
+
         if (this.head.next) {
             this.head = this.head.next;
         } else {
             this.head = null;
             this.tail = null;
         }
+
+        return deletedHead;
     }
 
     find(index) {
