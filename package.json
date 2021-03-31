@@ -17,6 +17,7 @@
     "typescript": "^3.7.4"
   },
   "dependencies": {
+    "@hediet/debug-visualizer-data-extraction": "^0.13.1",
     "@types/es6-shim": "^0.31.40",
     "@types/node": "^14.0.4",
     "datastructures-js": "^9.0.0",
