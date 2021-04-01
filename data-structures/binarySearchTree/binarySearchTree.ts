@@ -6,74 +6,84 @@ export default class BinarySearchTree {
         this.root = null;
     }
 
-    insert(value: Number) {
-        const newNode = new BinaryTreeNode(value);
+    // insert(value: Number) {
+    //     const newNode = new BinaryTreeNode(value);
 
-        if (!this.root) {
+    //     if (!this.root) {
+    //         this.root = newNode;
+    //         return;
+    //     }
+
+    //     let currentNode = this.root
+
+    //     while (true) {
+    //         if (value === currentNode.value) {
+    //             return null;
+    //         }
+    //         if (value < currentNode.value) {
+    //             // left
+    //             if (!currentNode.left) {
+    //                 currentNode.left = newNode;
+    //                 return;
+    //             }
+    //             currentNode = currentNode.left;
+    //         } else if (value > currentNode.value) {
+    //             // right
+    //             if (!currentNode.right) {
+    //                 currentNode.right = newNode;
+    //                 return;
+    //             }
+    //             currentNode = currentNode.right;
+    //         }
+    //     }
+    // }
+
+    // helper method which creates a new node to 
+    // be inserted and calls insertNode
+    insert(value) {
+        // Creating a node and initailising 
+        // with data 
+        var newNode = new BinaryTreeNode(value);
+
+        // root is null then node will
+        // be added to the tree and made root.
+        if (this.root === null)
             this.root = newNode;
-            return;
+        else
+
+            // find the correct position in the 
+            // tree and add the node
+            this.insertNode(this.root, newNode);
+    }
+
+    // Method to insert a node in a tree
+    // it moves over the tree to find the location
+    // to insert a node with a given data 
+    insertNode(node, newNode) {
+        // if the data is less than the node
+        // data move left of the tree 
+        if (newNode.value < node.value) {
+            // if left is null insert node here
+            if (node.left === null)
+                node.left = newNode;
+            else
+
+                // if left is not null recur until 
+                // null is found
+                this.insertNode(node.left, newNode);
         }
 
-        let currentNode = this.root
+        // if the data is more than the node
+        // data move right of the tree 
+        else {
+            // if right is null insert node here
+            if (node.right === null)
+                node.right = newNode;
+            else
 
-        // approach 1
-        // while (currentNode) {
-        //     if (value < currentNode.value && currentNode.left) {
-        //         currentNode = currentNode.left;
-        //     } else if (value > currentNode.value && currentNode.right) {
-        //         currentNode = currentNode.right;
-        //     } else {
-        //         break;
-        //     }
-        // }
-
-        // if (value < currentNode.value) {
-        //     currentNode.left = newNode;
-        // } else if (value > currentNode.value) {
-        //     currentNode.right = newNode;
-        // }
-
-        // approach 2
-        // while (true) {
-        //     if (value == currentNode.value) {
-        //         return null;
-        //     }
-        //     if (value < currentNode.value) {
-        //         if (currentNode.left) {
-        //             currentNode = currentNode.left;
-        //         } else {
-        //             currentNode.left = newNode;
-        //             return;
-        //         }
-        //     } else if (value > currentNode.value) {
-        //         if (currentNode.right) {
-        //             currentNode = currentNode.right;
-        //         } else {
-        //             currentNode.right = newNode;
-        //             return;
-        //         }
-        //     }
-        // }
-
-        while (true) {
-            if (value === currentNode.value) {
-                return null;
-            }
-            if (value < currentNode.value) {
-                // left
-                if (!currentNode.left) {
-                    currentNode.left = newNode;
-                    return;
-                }
-                currentNode = currentNode.left;
-            } else if (value > currentNode.value) {
-                // right
-                if (!currentNode.right) {
-                    currentNode.right = newNode;
-                    return;
-                }
-                currentNode = currentNode.right;
-            }
+                // if right is not null recur until 
+                // null is found
+                this.insertNode(node.right, newNode);
         }
     }
 
