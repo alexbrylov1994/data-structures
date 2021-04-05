@@ -29,7 +29,6 @@ export default function breadthFirstSearch(rootNode: BinaryTreeNode): number[] {
     nodeQueue.enqueue(rootNode);
     console.log('hello');
     while (nodeQueue.length()) {
-        console.log('nim:', nodeQueue.length());
         const currentNode = nodeQueue.dequeue();
         visited.push(currentNode.value);
 
