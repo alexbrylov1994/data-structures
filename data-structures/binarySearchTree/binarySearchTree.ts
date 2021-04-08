@@ -1,5 +1,6 @@
+import breadthFirstSearch from "../../algorithms/Traversal/breadthFirstSearch";
+import { depthFirstSearchInOrder } from "../../algorithms/Traversal/depthFirstSearch";
 import BinaryTreeNode from "./binarySearchTreeNode";
-
 export default class BinarySearchTree {
     root: BinaryTreeNode;
     constructor() {
@@ -174,12 +175,14 @@ export default class BinarySearchTree {
 }
 
 
-// let tree = new BinarySearchTree();
-// tree.insert(10);
-// tree.insert(3);
-// tree.insert(2);
-// tree.insert(4);
-// tree.insert(11);
-// tree.insert(12);
-// console.log(JSON.stringify(tree));
+let tree = new BinarySearchTree();
+tree.insert(10);
+tree.insert(6);
+tree.insert(3);
+tree.insert(8);
+tree.insert(15);
+tree.insert(20);
+console.log('tree:', JSON.stringify(tree));
+console.log('BFS:', breadthFirstSearch(tree.root));
+console.log('DFS:', depthFirstSearchInOrder(tree.root));
 // console.log('found:', tree.find(132));
