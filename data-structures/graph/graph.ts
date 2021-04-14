@@ -1,3 +1,6 @@
+// import { breadthFirstSearch } from "../../algorithms/Traversal/breadthFirstSearchGraph";
+// import { depthFirstRecursive } from "../../algorithms/Traversal/depthFirstSearchGraph";
+
 interface IHash {
     [key: string]: any[];
 }
@@ -48,3 +51,31 @@ export default class Graph {
         delete this.adjacencyList[vertex];
     }
 }
+
+// let g = new Graph();
+
+// g.addVertex("A")
+// g.addVertex("B")
+// g.addVertex("C")
+// g.addVertex("D")
+// g.addVertex("E")
+// g.addVertex("F")
+
+
+// g.addEdge("A", "B")
+// g.addEdge("A", "C")
+// g.addEdge("B", "D")
+// g.addEdge("C", "E")
+// g.addEdge("D", "E")
+// g.addEdge("D", "F")
+// g.addEdge("E", "F")
+// console.log('dfs', depthFirstRecursive(g, "A"));
+// console.log('bfs', breadthFirstSearch(g, "A"));
+
+//          A
+//        /   \
+//       B     C
+//       |     |
+//       D --- E
+//        \   /
+//          F
