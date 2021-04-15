@@ -22,7 +22,7 @@ export function dijkstra(start, finish, graph) {
     let path = [] //to return at end
     let smallest;
     //build up initial state
-    for (let vertex in this.adjacencyList) {
+    for (let vertex in graph.adjacencyList) {
         if (vertex === start) {
             distances[vertex] = 0;
             nodes.enqueue(vertex, 0);
@@ -45,9 +45,9 @@ export function dijkstra(start, finish, graph) {
             break;
         }
         if (smallest || distances[smallest] !== Infinity) {
-            for (let neighbor in this.adjacencyList[smallest]) {
+            for (let neighbor in graph.adjacencyList[smallest]) {
                 //find neighboring node
-                let nextNode = this.adjacencyList[smallest][neighbor];
+                let nextNode = graph.adjacencyList[smallest][neighbor];
                 //calculate new distance to neighboring node
                 let candidate = distances[smallest] + nextNode.weight;
                 let nextNeighbor = nextNode.node;
