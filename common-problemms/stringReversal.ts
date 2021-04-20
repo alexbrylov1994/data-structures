@@ -1,5 +1,3 @@
-import { strict } from "assert";
-
 const reverse = (str: string): string => {
     const reverseArr = [];
 
@@ -8,6 +6,13 @@ const reverse = (str: string): string => {
     }
 
     return reverseArr.join('');
+
+    // let reverse = '';
+    // for (let char of str) {
+    //     reverse = char + reverse;
+    // }
+
+    // return reverse;
 }
 
-reverse('1234');
+console.log(reverse('1234'));
