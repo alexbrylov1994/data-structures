@@ -1,3 +1,4 @@
+// Reverse String
 const reverse = (str: string): string => {
     const reverseArr = [];
 

@@ -1,3 +1,4 @@
+// Count Unique Value
 const countUniqueValue = (array: number[]): number => {
     let current = 0;
     let next = current + 1;

@@ -1,3 +1,4 @@
+//Are There Duplicates
 const areThereDuplicates = (...args: string[] | number[]): boolean => {
 
     let hash = {};

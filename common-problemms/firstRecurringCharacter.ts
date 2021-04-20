@@ -1,3 +1,4 @@
+// First Recurring Character
 const recuring = (arr: number[] | string): number | string => {
     const hashmap = {}
 

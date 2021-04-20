@@ -1,3 +1,4 @@
+//Average Pair
 const averagePair = (arr: [], target: number): boolean => {
     // if no array -> return false 
 

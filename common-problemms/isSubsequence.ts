@@ -1,4 +1,4 @@
-
+//Is Subsequence
 const isSubsequence = (sub: string, sequence: string): boolean => {
     // if 2nd array smaller than first, return 0
     if (!sub) {

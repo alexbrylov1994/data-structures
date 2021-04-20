@@ -1,3 +1,4 @@
+// Merge Sorted Arrays
 const merge = (left: number[], right: number[]): number[] => {
     let array = [];
     let leftIndex = 0;

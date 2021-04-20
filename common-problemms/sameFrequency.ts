@@ -1,3 +1,4 @@
+//Same Frequency
 const sameFrequency = (int1: number, int2: number): boolean => {
     // convert numbers to strings
     // if the lenght not the same, same frequency not possible, return null
