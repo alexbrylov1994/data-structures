@@ -1,30 +1,24 @@
 // divide sub array into subarrays
 const chunk = (array: number[], size: number): number[][] => {
     // itterate over the array
-    // have counter which increases 
     let newArr = [];
-    let subArray = [];
-    let counter = 0;
+    let chunk = [];
     // itterate add to subarray 
-    // when counter reaches the number:
+    // when chunk length === number:
     // push sub array to new array
-    // clear sub array and counter set to 0
+    // clear chunk
     for (let el of array) {
-        if (counter === size) {
-            console.log('sub', subArray);
-            newArr.push(subArray);
-            counter = 0;
-            subArray = [];
+        if (chunk.length === size) {
+            newArr.push(chunk);
+            chunk = [];
         }
 
-        subArray.push(el);
-        counter++;
+        chunk.push(el);
     }
-    console.log(newArr);
 
-    // if counter not 0, add subarray to array, and return it
-    if (counter > 0) {
-        newArr.push(subArray);
+    // chunk size isn't 0, add subarray to array, and return it
+    if (chunk.length > 0) {
+        newArr.push(chunk);
     }
 
     return newArr;
