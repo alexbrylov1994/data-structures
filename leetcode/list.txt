@@ -1,8 +1,10 @@
 1. Two Sum
 11. Container With Most Water.
+20. Valid Parentheses
 42. Trapping Rain Water
 92. Reverse Linked List II
 125. Valid Palindrome
+142. Linked List Cycle II
 430. Flatten a Multilevel Doubly Linked List
 680. Valid Palindrome II
 844. Backspace String Compare
