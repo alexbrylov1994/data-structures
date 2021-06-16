@@ -8,6 +8,7 @@
 104. Maximum Depth of Binary Tree
 125. Valid Palindrome
 142. Linked List Cycle II
+222. Count Complete Tree Nodes
 199. Binary Tree Right Side View
 430. Flatten a Multilevel Doubly Linked List
 680. Valid Palindrome II
