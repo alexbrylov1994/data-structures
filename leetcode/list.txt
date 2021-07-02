@@ -16,6 +16,7 @@
 286. Walls and Gates
 430. Flatten a Multilevel Doubly Linked List
 680. Valid Palindrome II
+688. Knight Probability in Chessboard
 743. Network Delay Time
 746. Min Cost Climbing Stairs
 844. Backspace String Compare
