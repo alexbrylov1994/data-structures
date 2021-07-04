@@ -2,6 +2,7 @@
 11. Container With Most Water.
 20. Valid Parentheses
 34. Find First and Last Position of Element in Sorted Array
+37. Sudoku Solver
 42. Trapping Rain Water
 92. Reverse Linked List II
 98. Validate Binary Search Tree
@@ -12,6 +13,7 @@
 199. Binary Tree Right Side View
 200. Number of Islands
 207. Course Schedule
+208. Implement Trie (Prefix Tree)
 222. Count Complete Tree Nodes
 286. Walls and Gates
 430. Flatten a Multilevel Doubly Linked List
