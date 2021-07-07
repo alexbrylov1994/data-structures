@@ -1,4 +1,5 @@
 // 1. Two Sum
+
 // Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 
 // You may assume that each input would have exactly one solution, and you may not use the same element twice.
@@ -20,20 +21,22 @@
 // Output: [0,1]
 
 function twoSum(nums: number[], target: number): number[] {
-    const numsMap = {};
-
-    for (let p = 0; p < nums.length; p++) {
-        const currentMapVal = numsMap[nums[p]];
-
-        if (currentMapVal >= 0) {
-            return [currentMapVal, p];
-        } else {
-            const numberToFind = target - nums[p];
-            numsMap[numberToFind] = p;
-        }
+    if (nums.length < 2) {
+        return [];
     }
 
-    return null;
-}
+    let hash = {};
 
-console.log(twoSum([3, 2, 4], 6));
+    for (let i = 0; i < nums.length; i++) {
+        // 0 is false in js
+        if (hash[nums[i]] >= 0) {
+            return [hash[nums[i]], i]
+        } else {
+            let number = target - nums[i];
+            hash[number] = i;
+        }
+
+    }
+
+    return [];
+};
