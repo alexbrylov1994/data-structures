@@ -1,3 +1,4 @@
 1. Two Sum
+56. Merge Intervals
 146. LRU Cache
 1041. Robot Bounded In Circle
