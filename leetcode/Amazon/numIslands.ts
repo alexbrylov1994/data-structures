@@ -23,58 +23,49 @@
 // ]
 // Output: 3
 
-const Directions = [
-    [-1, 0], // up
-    [0, 1], // right
-    [1, 0], // down
-    [0, -1] // left
+const directions = [
+    [-1, 0], //up
+    [0, 1], //right
+    [1, 0], //down
+    [0, -1] //left
 ]
 
 function numIslands(grid: string[][]): number {
-    if (!grid.length) {
-        return 0;
-    }
-
-    let islandCount = 0
+    if (grid.length === 0) return 0;
+    let islandCount = 0;
 
     for (let row = 0; row < grid.length; row++) {
-        for (let column = 0; column < grid[0].length; column++) {
-
-            if (grid[row][column] === '1') {
+        for (let col = 0; col < grid[0].length; col++) {
+            if (grid[row][col] === '1') {
                 islandCount++;
-
-                grid[row][column] = '0';
-                let queue = [[row, column]];
+                grid[row][col] = '0';
+                const queue = [];
+                queue.push([row, col]);
 
                 while (queue.length) {
-                    let currentPosition = queue.shift();
-                    let currentRow = currentPosition[0];
-                    let currentColumn = currentPosition[1];
+                    const currentPos = queue.shift();
+                    const currentRow = currentPos[0];
+                    const currentCol = currentPos[1];
 
-                    for (let i = 0; i < Directions.length; i++) {
-                        let direction = Directions[i];
-                        let nextRow = direction[0] + currentRow;
-                        let nextColumn = direction[1] + currentColumn;
+                    for (let i = 0; i < directions.length; i++) {
+                        const currentDir = directions[i];
+                        const nextRow = currentRow + currentDir[0];
+                        const nextCol = currentCol + currentDir[1];
 
-                        if (nextRow < 0 || nextRow >= grid.length || nextColumn < 0 || nextColumn >= grid[0].length) {
-                            continue;
+                        if (nextRow < 0 || nextRow >= grid.length || nextCol < 0 || nextCol >= grid[0].length) continue;
+
+                        if (grid[nextRow][nextCol] === '1') {
+                            queue.push([nextRow, nextCol]);
+                            grid[nextRow][nextCol] = '0';
                         }
-
-                        if (grid[nextRow][nextColumn] === '1') {
-                            queue.push([nextRow, nextColumn]);
-                            grid[nextRow][nextColumn] = '0';
-                        }
-
                     }
-
                 }
             }
-
         }
     }
 
     return islandCount;
-};
+}
 
 // Time complexity : O(M×N) where MM is the number of rows and N is the number of columns.
 
