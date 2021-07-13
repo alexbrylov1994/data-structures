@@ -47,3 +47,7 @@ function maxArea(height: number[]): number {
 
     return area;
 };
+
+// Time complexity : O(n). Single pass.
+
+// Space complexity : O(1). Constant space is used.
