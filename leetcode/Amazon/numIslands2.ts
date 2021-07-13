@@ -188,4 +188,4 @@ function numIslands2Union(m: number, n: number, positions: number[][]): number[]
 
 // Time complexity : O(M×N) where MM is the number of rows and NN is the number of columns. Note that Union operation takes essentially constant time[1] when UnionFind is implemented with both path compression and union by rank.
 
-// Space complexity : )O(M×N) as required by UnionFind data structure.
+// Space complexity : O(M×N) as required by UnionFind data structure.
