@@ -27,20 +27,45 @@
 // randomizedSet.getRandom(); // Since 2 is the only number in the set, getRandom() will always return 2.
 
 class RandomizedSet {
-    constructor() {
+    values: number[];
+    hash: object;
 
+    constructor() {
+        this.values = [];
+        this.hash = {};
     }
 
     insert(val: number): boolean {
-
+        if (this.hash[val] >= 0) {
+            return false
+        } else {
+            this.values.push(val);
+            this.hash[val] = this.values.length - 1;
+            return true;
+        }
     }
 
     remove(val: number): boolean {
+        if (!(this.hash[val] >= 0)) {
+            return false;
+        }
 
+        let index = this.hash[val];
+        let lastIndex = this.values.length - 1;
+
+        this.hash[this.values[lastIndex]] = index;
+        delete this.hash[val];
+
+        [this.values[index], this.values[lastIndex]] = [this.values[lastIndex], this.values[index]];
+
+        this.values.pop();
+        console.log(this.values);
+        return true;
     }
 
     getRandom(): number {
-
+        let index = Math.floor(Math.random() * (this.values.length));
+        return this.values[index];
     }
 }
 
@@ -51,3 +76,7 @@ class RandomizedSet {
  * var param_2 = obj.remove(val)
  * var param_3 = obj.getRandom()
  */
+
+//  Time complexity. GetRandom is always O(1). Insert and Delete both have O(1) average time complexity, and O(N) in the worst-case scenario when the operation exceeds the capacity of currently allocated array/hashmap and invokes space reallocation.
+
+//  Space complexity: O(N), to store N elements.
