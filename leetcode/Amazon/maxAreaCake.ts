@@ -22,29 +22,37 @@
 // Output: 9
 
 function maxArea(h: number, w: number, horizontalCuts: number[], verticalCuts: number[]): number {
-    // Start by sorting the inputs
-    horizontalCuts.push(0, h);
-    verticalCuts.push(0, w);
+    let maxHeight = 0;
+    let maxWidth = 0;
+    let lastHeight = 0;
+    let lastWidth = 0;
+
     horizontalCuts.sort((a, b) => a - b);
     verticalCuts.sort((a, b) => a - b);
 
-    let hMax = 0;
-    let vMax = 0;
 
-    // Consider the edges first
-    for (let i = 1; i < verticalCuts.length; i++) {
-        // verticalCuts[i] - verticalCuts[i - 1] represents the distance between
-        // two adjacent edges, and thus a possible width
-        hMax = Math.max(hMax, verticalCuts[i] - verticalCuts[i - 1]);
+    for (let hCut of horizontalCuts) {
+        maxHeight = Math.max(maxHeight, (hCut - lastHeight));
+        lastHeight = hCut;
     }
 
-    // Consider the edges first
-    for (let i = 1; i < horizontalCuts.length; i++) {
-        // horizontalCuts[i] - horizontalCuts[i - 1] represents the distance between
-        // two adjacent edges, and thus a possible height
-        vMax = Math.max(vMax, horizontalCuts[i] - horizontalCuts[i - 1]);
+    maxHeight = Math.max(maxHeight, (h - lastHeight));
+
+    for (let vCut of verticalCuts) {
+        maxWidth = Math.max(maxWidth, (vCut - lastWidth));
+        lastWidth = vCut;
     }
 
-    // Be careful of overflow, and don't forget the modulo!
-    return (hMax * vMax) % (1e9 + 7);
+    maxWidth = Math.max(maxWidth, (w - lastWidth));
+
+    // n is showing number is bigInt like 1 or 1n 1===1n, but 1n is bigInt and 1 is int
+    return Number(BigInt(maxWidth) * BigInt(maxHeight) % 1000000007n); // or (1e9 + 7)
 }
+
+// Time complexity: O(N⋅log(N)+M⋅log(M))
+
+// Sorting an array of length nn costs n \cdot lognn⋅logn time. We need to sort both horizontalCuts and verticalCuts, which is why both are present in the time complexity. Although we also iterate through both arrays, which costs O(N) and O(M) time, these iterations are not as expensive as the sorting, and by the rules of Big O, do not get included in the final time complexity.
+
+// Space complexity: O(1)
+
+// Regardless of the input size, we only ever need to use 2 variables: maxHeight and maxWidth.
