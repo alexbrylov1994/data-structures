@@ -66,10 +66,10 @@ export default class MaxBinaryHeap {
         }
 
         let greaterChild;
-        if (this.getLeftChild(index) > (this.values.length - 1)) {
-            greaterChild = this.getRightChild(index);
-        } if (this.getRightChild(index) > (this.values.length - 1)) {
+        if (this.getLeftChild(index) < (this.values.length - 1)) {
             greaterChild = this.getLeftChild(index);
+        } else if (this.getRightChild(index) < (this.values.length - 1)) {
+            greaterChild = this.getRightChild(index);
         } else if (this.values[this.getLeftChild(index)] > this.values[this.getRightChild(index)]) {
             greaterChild = this.getLeftChild(index);
         } else {
