@@ -127,6 +127,9 @@ function numberToWords(num: number): string {
     return result;
 }
 
+// Time complexity : O(N). Intuitively the output is proportional to the number N of digits in the input.
+// Space complexity : O(1) since the output is just a string.
+
 
 // /**
 //  * @param {number} num
