@@ -72,8 +72,7 @@ export default class MaxBinaryHeap {
             } else {
                 greaterChild = this.getRightChild(index);
             }
-        }
-        else if (this.getLeftChild(index) < (this.values.length - 1)) {
+        } else if (this.getLeftChild(index) < (this.values.length - 1)) {
             greaterChild = this.getLeftChild(index);
         }
 
@@ -83,18 +82,3 @@ export default class MaxBinaryHeap {
         }
     }
 }
-
-let heap = new MaxBinaryHeap()
-heap.insert(41);
-heap.insert(39);
-heap.insert(33);
-heap.insert(18);
-heap.insert(27);
-heap.insert(12);
-heap.insert(55);
-console.log(heap.values);
-heap.extractMax();
-console.log(heap.values);
-heap.extractMax();
-console.log(heap.values);
-heap.extractMax();
