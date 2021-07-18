@@ -5,7 +5,7 @@ export default class MaxBinaryHeap {
     values: number[];
     constructor() {
         this.values = [];
-        // this.values = [41, 39, 33, 18, 27, 12];
+        // this.values = [55, 39, 41, 18, 27, 12, 33];
     }
 
     insert(value) {
@@ -66,14 +66,15 @@ export default class MaxBinaryHeap {
         }
 
         let greaterChild;
-        if (this.getLeftChild(index) < (this.values.length - 1)) {
+        if (this.getLeftChild(index) < (this.values.length - 1) && this.getRightChild(index) < (this.values.length - 1)) {
+            if (this.values[this.getLeftChild(index)] > this.values[this.getRightChild(index)]) {
+                greaterChild = this.getLeftChild(index);
+            } else {
+                greaterChild = this.getRightChild(index);
+            }
+        }
+        else if (this.getLeftChild(index) < (this.values.length - 1)) {
             greaterChild = this.getLeftChild(index);
-        } else if (this.getRightChild(index) < (this.values.length - 1)) {
-            greaterChild = this.getRightChild(index);
-        } else if (this.values[this.getLeftChild(index)] > this.values[this.getRightChild(index)]) {
-            greaterChild = this.getLeftChild(index);
-        } else {
-            greaterChild = this.getRightChild(index);
         }
 
         if (this.values[index] < this.values[greaterChild]) {
@@ -81,5 +82,19 @@ export default class MaxBinaryHeap {
             this.bubleDown(greaterChild);
         }
     }
-
 }
+
+let heap = new MaxBinaryHeap()
+heap.insert(41);
+heap.insert(39);
+heap.insert(33);
+heap.insert(18);
+heap.insert(27);
+heap.insert(12);
+heap.insert(55);
+console.log(heap.values);
+heap.extractMax();
+console.log(heap.values);
+heap.extractMax();
+console.log(heap.values);
+heap.extractMax();
