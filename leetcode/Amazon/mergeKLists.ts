@@ -54,7 +54,9 @@ function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
         let head = new ListNode(heap.pop());
         let current = head;
 
+        //N
         while (heap.size()) {
+            // LOG(K)
             let newNode = new ListNode(heap.pop())
             current.next = newNode;
             current = current.next;
@@ -65,32 +67,6 @@ function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
         return null
     };
 };
-
-// var mergeKLists = function(lists) {
-//     if (!lists.length) return null;
-//     let minHeap = new MinHeap();
-//     for (let node of lists) {
-//         if (node) {
-//             minHeap.add(node);
-//         }
-//     }
-//     let head = null;
-//     let cur;
-//     while (minHeap.size) {
-//         let node = minHeap.pop();
-//         if (head) {
-//             cur.next = new ListNode(node.val);
-//             cur = cur.next;
-//         } else {
-//             head = new ListNode(node.val);
-//             cur = head;
-//         }
-//         if (node.next) {
-//             minHeap.add(node.next);
-//         }
-//     }
-//     return head;
-// };
 class MinHeap {
 
     heap: number[];
@@ -163,3 +139,96 @@ class MinHeap {
         return this.heap.length;
     }
 }
+
+// Time complexity: O(Nlogk) where k is the number of linked lists.
+// - The comparison cost will be reduced to O(logk) for every pop and insertion to priority queue.But finding the node with the smallest value just costs O(1) time.
+// - There are N nodes in the final linked list.
+
+// Space complexity: O(N)
+//     - O(n) Creating a new linked list costs O(n) space.
+// - O(k) The code above present applies in -place method which cost O(1) space.And the priority queue(often implemented with heaps) costs O(k) space(it's far less than NN in most situations).
+
+// var mergeKLists = function(lists) {
+//     if (!lists.length) return null;
+//     let minHeap = new MinHeap();
+//     for (let node of lists) {
+//         if (node) {
+//             minHeap.add(node);
+//         }
+//     }
+//     let head = null;
+//     let cur;
+//     while (minHeap.size) {
+//         let node = minHeap.pop();
+//         if (head) {
+//             cur.next = new ListNode(node.val);
+//             cur = cur.next;
+//         } else {
+//             head = new ListNode(node.val);
+//             cur = head;
+//         }
+//         if (node.next) {
+//             minHeap.add(node.next);
+//         }
+//     }
+//     return head;
+// };
+// Here's the heap (not uses, nodes and values to sort). Pardon the imperative style here, for brevity.
+
+// class MinHeap {
+//     constructor(){
+//         this.heap = [null];
+//         this.size = 0;
+//     }
+
+//     add(node) {
+//         this.heap.push(node);
+//         this.size++;
+//         this.siftUp();
+//     }
+
+//     pop(){
+//         if(this.size === 0) return null;
+//         this.size--;
+//         this.swap(1, this.heap.length -1);
+//         let res =  this.heap.pop();
+//         this.siftDown();
+//         return res;
+//     }
+
+//     swap(i,j) {
+//         [this.heap[i], this.heap[j]] = [this.heap[j], this.heap[i]];
+//     }
+
+//     siftUp() {
+//         let cI = this.heap.length - 1;
+//         let pI = Math.floor(cI/2);
+//         while (pI !== 0 && this.heap[pI].val > this.heap[cI].val) {
+//             this.swap(pI, cI);
+//             let temp = pI;
+//             pI = Math.floor(pI/2);
+//             cI = temp;
+//         }
+//     }
+
+//     siftDown() {
+//         let pI = 1;
+//         let c1I = 2*pI;
+//         let c2I = c1I + 1;
+//         while (c1I < this.heap.length) {
+//             let swapI;
+//             if (c2I >= this.heap.length) { swapI = c1I;}
+//             else {
+//                 swapI = this.heap[c1I].val > this.heap[c2I].val ? c2I : c1I;
+//             }
+//             if (this.heap[pI].val < this.heap[swapI].val) {
+//                 return;
+//             } else {
+//                 this.swap(swapI, pI);
+//                 pI = swapI;
+//                 c1I = 2* pI;
+//                 c2I = c1I + 1;  
+//             }
+//         }
+//     }    
+// }
