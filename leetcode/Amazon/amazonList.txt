@@ -9,6 +9,7 @@
 253. Meeting Rooms II
 273. Integer to English Words
 305. Number of Islands II
+460. LFU Cache
 380. Insert Delete GetRandom O(1)
 973. K Closest Points to Origin
 1041. Robot Bounded In Circle
