@@ -18,4 +18,5 @@
 973. K Closest Points to Origin
 1041. Robot Bounded In Circle
 1152. Analyze User Website Visit Pattern
+1167. Minimum Cost to Connect Sticks
 1465. Maximum Area of a Piece of Cake After Horizontal and Vertical Cuts
