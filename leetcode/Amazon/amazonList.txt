@@ -10,9 +10,12 @@
 253. Meeting Rooms II
 273. Integer to English Words
 305. Number of Islands II
+323. Number of Connected Components in an Undirected Graph
 380. Insert Delete GetRandom O(1)
 460. LFU Cache
+572. Subtree of Another Tree
 937. Reorder Data in Log Files
 973. K Closest Points to Origin
 1041. Robot Bounded In Circle
+1152. Analyze User Website Visit Pattern
 1465. Maximum Area of a Piece of Cake After Horizontal and Vertical Cuts
