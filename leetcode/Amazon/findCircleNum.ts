@@ -23,6 +23,10 @@ function findCircleNum(isConnected: number[][]): number {
     let queue = [];
     let proviences = 0;
 
+    // Adjecency Matrix (N*N) 
+    // go over row, if index not visited, push to queue
+    // extract from, go over columns, see if column at the row equals to one and not visited, push to queue.
+    // we go from left to right, and top to bottom
     for (let row = 0; row < isConnected.length; row++) {
         if (!visited[row]) {
             queue.push(row);
