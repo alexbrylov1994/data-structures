@@ -19,6 +19,8 @@
 // Output: 3
 
 function findCircleNum(isConnected: number[][]): number {
+    // Since N by N matrix and node points to itself, we just need a list of nodes
+    // to see if they are visited or not
     let visited = new Array(isConnected.length).fill(false);
     let queue = [];
     let proviences = 0;
