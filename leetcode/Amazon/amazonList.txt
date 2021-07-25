@@ -13,6 +13,7 @@
 323. Number of Connected Components in an Undirected Graph
 380. Insert Delete GetRandom O(1)
 460. LFU Cache
+472. Concatenated Words
 572. Subtree of Another Tree
 937. Reorder Data in Log Files
 973. K Closest Points to Origin
