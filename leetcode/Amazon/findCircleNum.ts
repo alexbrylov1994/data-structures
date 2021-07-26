@@ -52,3 +52,26 @@ function findCircleNum(isConnected: number[][]): number {
 // Time complexity : O(n^2). The complete matrix of size n^2 is traversed.
 
 // Space complexity : O(n). A queuequeue and visitedvisited array of size n is used.
+
+// DFS
+
+// function findCircleNum(isConnected: number[][]): number {
+//     let visited = new Array(isConnected.length).fill(false);
+//     let proviences = 0;
+//     for (let row = 0; row < isConnected.length; row++) {
+//         if (!visited[row]) {
+//             dfs(row, visited, isConnected)
+//         }
+//     }
+
+//     return proviences;
+// };
+
+// const dfs = (row: number, visited: boolean[], matrix: number[][]) => {
+//     for (let column = 0; column < matrix.length; column++) {
+//         if (!visited[column]) {
+//             visited[column] = true;
+//             dfs(column, visited, matrix);
+//         }
+//     }
+// }
