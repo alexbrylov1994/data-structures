@@ -34,9 +34,9 @@ function findCircleNum(isConnected: number[][]): number {
             queue.push(row);
             while (queue.length) {
                 let current = queue.shift();
-                visited[current] = true;
                 for (let column = 0; column < isConnected.length; column++) {
                     if (isConnected[current][column] === 1 && !visited[column]) {
+                        visited[current] = true;
                         queue.push(column);
                     }
                 }
