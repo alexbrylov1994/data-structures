@@ -49,27 +49,28 @@
 // I use dummy head&tail for easier implementation
 
 // hopefully won't see in interview, seniors might 
-class ListNode {
+class LinkedListNode {
     key: number;
     val: number;
-    next: ListNode;
+    next: LinkedListNode;
     freq: number;
-    prev: ListNode;
+    prev: LinkedListNode;
 
     constructor(key: number, value: number) {
         this.key = key;
         this.val = value;
-        this.next = this.prev = null;
+        this.next = null;
+        this.prev = null;
         this.freq = 1;
     }
 }
 
 class DoublyLinkedList {
-    head: ListNode;
-    tail: ListNode;
+    head: LinkedListNode;
+    tail: LinkedListNode;
     constructor() {
-        this.head = new ListNode(null, null);
-        this.tail = new ListNode(null, null);
+        this.head = new LinkedListNode(null, null);
+        this.tail = new LinkedListNode(null, null);
         this.head.next = this.tail;
         this.tail.prev = this.head;
     }
@@ -103,7 +104,7 @@ class LFUCache {
     capacity: number;
     currentSize: number;
     leastFreq: number;
-    nodeHash: Map<number, ListNode>;
+    nodeHash: Map<number, LinkedListNode>;
     freqHash: Map<number, DoublyLinkedList>;
     constructor(capacity: number) {
         this.capacity = capacity;
@@ -135,7 +136,7 @@ class LFUCache {
                 this.nodeHash.delete(tailKey);
                 this.currentSize--;
             }
-            let newNode = new ListNode(key, value);
+            let newNode = new LinkedListNode(key, value);
             // freqHash housekeeping
             if (this.freqHash.get(1) == null) this.freqHash.set(1, new DoublyLinkedList())
             this.freqHash.get(1).insertHead(newNode);
