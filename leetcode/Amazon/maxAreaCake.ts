@@ -46,7 +46,7 @@ function maxArea(h: number, w: number, horizontalCuts: number[], verticalCuts: n
     maxWidth = Math.max(maxWidth, (w - lastWidth));
 
     // n is showing number is bigInt like 1 or 1n 1===1n, but 1n is bigInt and 1 is int
-    return Number(BigInt(maxWidth) * BigInt(maxHeight) % 1000000007n); // or (1e9 + 7)
+    return Number(BigInt(maxWidth) * BigInt(maxHeight) % 1000000007n); // or 10n**9n + 7n or (1e9 + 7)
 }
 
 // Time complexity: O(N⋅log(N)+M⋅log(M))
