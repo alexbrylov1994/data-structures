@@ -18,6 +18,27 @@
 // Output: 3
 // Explanation: All three pairs have a total duration of 120, which is divisible by 60.
 
+function numPairsDivisibleBy60x(time: number[]): number {
+    let count = 0;
+    let hash = {}
+    for (let duration of time) {
+        let mod = duration % 60;
+        //ex: 100  (100%60) = 40, so we need 20
+        //60 - 40 = 20, we check if we have 20
+        let remainder = mod === 0 ? 0 : 60 - mod % 60
+
+        // check if we have the second part 
+        if (hash[remainder]) {
+            count += hash[remainder];
+        }
+
+        // else set mod to 1 or increase
+        hash[mod] ? hash[mod]++ : hash[mod] = 1
+    }
+
+    return count;
+}
+
 function numPairsDivisibleBy60(time: number[]): number {
     let remainders = new Array(60).fill(0);
     let count = 0;
