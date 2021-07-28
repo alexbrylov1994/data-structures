@@ -18,14 +18,15 @@
 // Output: 3
 // Explanation: All three pairs have a total duration of 120, which is divisible by 60.
 
-function numPairsDivisibleBy60x(time: number[]): number {
+function numPairsDivisibleBy60(time: number[]): number {
     let count = 0;
     let hash = {}
     for (let duration of time) {
         let mod = duration % 60;
         //ex: 100  (100%60) = 40, so we need 20
         //60 - 40 = 20, we check if we have 20
-        let remainder = mod === 0 ? 0 : 60 - mod % 60
+
+        let remainder = (60 - mod) % 60
 
         // check if we have the second part 
         if (hash[remainder]) {
@@ -39,19 +40,21 @@ function numPairsDivisibleBy60x(time: number[]): number {
     return count;
 }
 
-function numPairsDivisibleBy60(time: number[]): number {
-    let remainders = new Array(60).fill(0);
-    let count = 0;
-    for (let t of time) {
-        if (t % 60 == 0) { // check if a%60==0 && b%60==0
-            count += remainders[0];
-        } else { // check if a%60+b%60==60
-            count += remainders[60 - t % 60];
-        }
-        remainders[t % 60]++; // remember to update the remainders
-    }
-    return count;
-}
+//2nd approach
+
+// function numPairsDivisibleBy60(time: number[]): number {
+//     let remainders = new Array(60).fill(0);
+//     let count = 0;
+//     for (let t of time) {
+//         if (t % 60 == 0) { // check if a%60==0 && b%60==0
+//             count += remainders[0];
+//         } else { // check if a%60+b%60==60
+//             count += remainders[60 - t % 60];
+//         }
+//         remainders[t % 60]++; // remember to update the remainders
+//     }
+//     return count;
+// }
 
 // Time complexity: O(n), when nn is the length of the input array, because we would visit each element in time once.
 // Space complexity: O(1), because the size of the array remainders is fixed with 6060.
