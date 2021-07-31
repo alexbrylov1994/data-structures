@@ -25,5 +25,6 @@
 1167. Minimum Cost to Connect Sticks
 1192. Critical Connections in a Network
 1135. Connecting Cities With Minimum Cost
+1192. Critical Connections in a Network
 1465. Maximum Area of a Piece of Cake After Horizontal and Vertical Cuts
 1648. Sell Diminishing-Valued Colored Balls
