@@ -28,46 +28,8 @@ class TreeNode {
         this.right = (right === undefined ? null : right)
     }
 }
-
-
-function levelOrder(root): number[][] {
-
-    if (!root) {
-        return [];
-    }
-
-    let result = [[]];
-    let index = 0;
-    let queue = [root];
-    queue.push('stop');
-
-    while (queue.length) {
-        let element = queue.shift();
-
-        if (element === 'stop') {
-            if (!queue.length) {
-                break;
-            }
-            queue.push(element);
-            result.push([]);
-            index++;
-        } else {
-            result[index].push(element.val);
-            if (element.left) {
-                queue.push(element.left)
-            }
-
-            if (element.right) {
-                queue.push(element.right)
-            }
-        }
-    }
-
-    return result;
-};
-
-// ------- 2nd Solution -------
-const levelOrder2 = function (root) {
+// tree width
+const levelOrder = function (root) {
     if (!root) return [];
     const result = [];
     const queue = [root];
