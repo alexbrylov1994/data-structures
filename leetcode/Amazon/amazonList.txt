@@ -16,6 +16,7 @@
 460. LFU Cache
 472. Concatenated Words
 572. Subtree of Another Tree
+642. Design Search Autocomplete System
 937. Reorder Data in Log Files
 973. K Closest Points to Origin
 1041. Robot Bounded In Circle
@@ -29,4 +30,5 @@
 1268. Search Suggestions System
 1465. Maximum Area of a Piece of Cake After Horizontal and Vertical Cuts
 1481. Least Number of Unique Integers after K Removals
+1628. Design an Expression Tree With Evaluate Function
 1648. Sell Diminishing-Valued Colored Balls
