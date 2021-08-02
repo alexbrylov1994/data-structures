@@ -28,4 +28,5 @@
 1192. Critical Connections in a Network
 1268. Search Suggestions System
 1465. Maximum Area of a Piece of Cake After Horizontal and Vertical Cuts
+1481. Least Number of Unique Integers after K Removals
 1648. Sell Diminishing-Valued Colored Balls
