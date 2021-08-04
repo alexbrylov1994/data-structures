@@ -23,6 +23,8 @@
 
 // };
 
+// a + b + c + d = 0
+// a + b == -(c + d)
 function fourSumCount(nums1: number[], nums2: number[], nums3: number[], nums4: number[]): number {
     let count = 0;
     const dict = {};
