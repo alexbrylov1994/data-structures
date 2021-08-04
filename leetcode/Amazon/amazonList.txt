@@ -12,7 +12,9 @@
 305. Number of Islands II
 315. Count of Smaller Numbers After Self
 323. Number of Connected Components in an Undirected Graph
+348. Design Tic-Tac-Toe
 380. Insert Delete GetRandom O(1)
+454. 4Sum II
 460. LFU Cache
 472. Concatenated Words
 572. Subtree of Another Tree
