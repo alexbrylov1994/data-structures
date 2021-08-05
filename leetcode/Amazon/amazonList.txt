@@ -5,7 +5,9 @@
 56. Merge Intervals
 127. Word Ladder
 146. LRU Cache
+139. Word Break
 200. Number of Islands
+210. Course Schedule II
 252. Meeting Rooms
 253. Meeting Rooms II
 273. Integer to English Words
@@ -32,6 +34,7 @@
 1135. Connecting Cities With Minimum Cost
 1192. Critical Connections in a Network
 1268. Search Suggestions System
+1353. Maximum Number of Events That Can Be Attended
 1465. Maximum Area of a Piece of Cake After Horizontal and Vertical Cuts
 1481. Least Number of Unique Integers after K Removals
 1628. Design an Expression Tree With Evaluate Function
