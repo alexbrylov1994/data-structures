@@ -49,7 +49,7 @@ class LRUCache {
     tail: DLinkedNode = new DLinkedNode();
     hashmap = {};
     maximumSize: number;
-
+    currentSize = 0;
     constructor(capacity: number) {
         this.head.next = this.tail;
         this.tail.prev = this.head;
@@ -93,11 +93,11 @@ class LRUCache {
     }
 
     checkSize() {
-        if (Object.keys(this.hashmap).length > this.maximumSize) {
+        if (this.currentSize > this.maximumSize) {
             let tail = this.tail.prev;
-            console.log('tail', this.tail);
             delete this.hashmap[tail.key];
             this.removeTail();
+            this.currentSize--;
         }
     }
 
@@ -109,6 +109,7 @@ class LRUCache {
             let newNode = new DLinkedNode(value, key);
             this.hashmap[key] = newNode;
             this.addNode(newNode);
+            this.currentSize++;
             this.checkSize();
         }
     }
