@@ -23,35 +23,33 @@
 // This way, we essentially split the question into 2 parts, array[0,start-1] (which is just dp[start])and array[start, end-1].
 
 function findAllConcatenatedWordsInADict(words: string[]): string[] {
-    const res = [];
-    const set = new Set();
-    words.sort((w1, w2) => w1.length - w2.length);
+    const set = new Set(words);
 
-    for (const w of words) {
-        if (wordBreak(w, set)) {
-            res.push(w);
-        }
-        set.add(w);
-    }
-    return res;
-};
+    // with curWord, we have split `num` words before it
+    const helper = (word, num = 0) => {
+        if (!word) return num > 1;
 
-const wordBreak = (s, set) => {
-    if (set.size === 0) return false;
-
-    const dp = Array(s.length + 1).fill(false);
-    dp[0] = true;
-
-    for (let end = 1; end <= s.length; end++) {
-        for (let start = 0; start < end; start++) {
-            const w = s.slice(start, end);
-            if (dp[start] === true && set.has(w)) {
-                dp[end] = true;
-                break;
+        let tmp = "";
+        for (let i = 0; i < word.length; i++) {
+            // build tmp word by appending characters
+            tmp += word[i];
+            if (set.has(tmp)) {
+                let sub = word.substr(i + 1);
+                if (helper(sub, num + 1)) {
+                    return true;
+                }
             }
         }
+        return false;
     }
-    return dp[s.length];
+
+    const ans = [];
+    words.forEach(w => {
+        if (helper(w)) {
+            ans.push(w);
+        }
+    });
+    return ans;
 };
 
   // function findAllConcatenatedWordsInADict(words: string[]): string[] {
