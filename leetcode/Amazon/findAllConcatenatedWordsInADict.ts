@@ -22,60 +22,56 @@
 // Iterate array[0, end-1] use another point start. 
 // This way, we essentially split the question into 2 parts, array[0,start-1] (which is just dp[start])and array[start, end-1].
 
-function findAllConcatenatedWordsInADict(words: string[]): string[] {
-    const set = new Set(words);
 
-    // with curWord, we have split `num` words before it
-    const helper = (word, num = 0) => {
-        if (!word) return num > 1;
+var findAllConcatenatedWordsInADict = function (words) {
+    let dict = new Set(words);
 
-        let tmp = "";
-        for (let i = 0; i < word.length; i++) {
-            // build tmp word by appending characters
-            tmp += word[i];
-            if (set.has(tmp)) {
-                let sub = word.substr(i + 1);
-                if (helper(sub, num + 1)) {
+    const helper = (dict, word) => {
+        for (let i = 1; i < word.length; i++) {
+            let left = word.substring(0, i);
+            let right = word.substring(i);
+            if (dict.has(left)) {
+                if (dict.has(right) || helper(dict, right))
                     return true;
-                }
             }
         }
         return false;
     }
 
-    const ans = [];
-    words.forEach(w => {
-        if (helper(w)) {
-            ans.push(w);
-        }
-    });
+    let ans = [];
+    for (let i = 0; i < words.length; i++) {
+        if (helper(dict, words[i]))
+            ans.push(words[i]);
+    }
+
     return ans;
 };
+// function findAllConcatenatedWordsInADict(words: string[]): string[] {
+//     const set = new Set(words);
 
-  // function findAllConcatenatedWordsInADict(words: string[]): string[] {
-//     words.sort((a, b) => a.length - b.length);
-//     let wordList = new Set();
-//     let allConcat = [];
-//     let isConcat = function (word) {
-//         if (!word) return false;
-//         let dp = new Array(word.length + 1).fill(false);
-//         dp[0] = true;
-//         for (let end = 1; end <= word.length; end++) {
-//             for (let start = 0; start < end; start++) {
-//                 if (dp[start] && wordList.has(word.slice(start, end))) {
-//                     dp[end] = true;
-//                     break;
+//     // with curWord, we have split `num` words before it
+//     const helper = (word, num = 0) => {
+//         if (!word) return num > 1;
+
+//         let tmp = "";
+//         for (let i = 0; i < word.length; i++) {
+//             // build tmp word by appending characters
+//             tmp += word[i];
+//             if (set.has(tmp)) {
+//                 let sub = word.substr(i + 1);
+//                 if (helper(sub, num + 1)) {
+//                     return true;
 //                 }
 //             }
 //         }
-//         return dp.pop();
+//         return false;
 //     }
 
-//     for (let i = 0; i < words.length; i++) {
-//         if (isConcat(words[i])) {
-//             allConcat.push(words[i]);
+//     const ans = [];
+//     words.forEach(w => {
+//         if (helper(w)) {
+//             ans.push(w);
 //         }
-//         wordList.add(words[i]);
-//     }
-//     return allConcat;
+//     });
+//     return ans;
 // };
