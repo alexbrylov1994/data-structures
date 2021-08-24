@@ -34,56 +34,31 @@
 // Input: products = ["havana"], searchWord = "tatiana"
 // Output: [[],[],[],[],[],[],[]]
 
+// We traversal the products to match the prefix and finally get the result.
+// I got 92ms as the best for this strategy. And here are some little optimizations:
+
+// update the product list for each search word since the suggestions for searchWord.slice(0, x + 1) must come from suggestions for searchWord.slice(0, x) which means we don't need to traversal the original whole products
+// just check the n-th character instead of the prefix substring
 function suggestedProducts(products: string[], searchWord: string): string[][] {
+    const result = [];
     products.sort();
-
-    function Trie() {
-        this.children = {};
-    }
-
-    Trie.prototype.addWord = function (word) {
-        let current = this;
-
-        for (let i = 0; i < word.length; i++) {
-            const char = word.charAt(i);
-
-            if (!current.children[char]) {
-                current.children[char] = new Trie();
+    for (let idx = 0; idx < searchWord.length; ++idx) {
+        const next = [];
+        result.push([]);
+        for (let i = 0; i < products.length; ++i) {
+            if (products[i][idx] === searchWord[idx]) {
+                next.push(products[i]);
+                result[idx].length < 3 && result[idx].push(products[i]);
             }
-            current = current.children[char];
         }
-
-        current.word = word;
+        products = next;
     }
-
-    let trie = new Trie();
-
-    for (const product of products) {
-        trie.addWord(product);
-    }
-
-    const output = [];
-    for (let i = 0; i < searchWord.length; i++) {
-        const char = searchWord.charAt(i);
-        trie = !!trie ? trie.children[char] : null;
-        output.push(!!trie ? dfs(trie) : []);
-    }
-
-    return output;
-
-    function dfs(node, output = []) {
-        if (!!node.word) {
-            output.push(node.word);
-        }
-
-        for (const child in node.children) {
-            dfs(node.children[child], output)
-        }
-
-        return output.length >= 3 ? output.slice(0, 3) : output;
-    }
-
+    return result;
 };
+
+// Time complexity: O(searchWord.length * products.length)
+// Space complexity: O(products.length)
+
 
 // Time complexity: O(M) to build the trie where M is total number of characters in products
 // For each prefix we find its representative node in O(len(prefix))
