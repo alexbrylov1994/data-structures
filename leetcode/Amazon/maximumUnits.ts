@@ -53,3 +53,28 @@ function maximumUnits(boxTypes: number[][], truckSize: number): number {
 // we might end up iterating over all the elements in the array. This gives us time complexity as  O(nlogn)+O(n)=O(nlogn).
 
 // Space Complexity: O(1), as we use constant extra space
+
+// OR
+
+// function maximumUnits(boxTypes: number[][], truckSize: number): number {
+//     boxTypes.sort((a, b) => a[1] - b[1]);
+//     let totalUnits = 0;
+
+//     while (truckSize > 0 && boxTypes.length) {
+//         let last = boxTypes.length - 1;
+//         let size = boxTypes[last][1];
+//         let numberOfBoxes = boxTypes[last][0];
+
+//         totalUnits += size;
+//         numberOfBoxes--;
+//         truckSize--;
+
+//         if (numberOfBoxes === 0) {
+//             boxTypes.pop();
+//         } else {
+//             boxTypes[last][0] = numberOfBoxes;
+//         }
+//     }
+
+//     return totalUnits;
+// };
