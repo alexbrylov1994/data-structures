@@ -40,19 +40,26 @@
 // update the product list for each search word since the suggestions for searchWord.slice(0, x + 1) must come from suggestions for searchWord.slice(0, x) which means we don't need to traversal the original whole products
 // just check the n-th character instead of the prefix substring
 function suggestedProducts(products: string[], searchWord: string): string[][] {
-    const result = [];
+    let result = [];
+    // lexical order
     products.sort();
-    for (let idx = 0; idx < searchWord.length; ++idx) {
-        const next = [];
+
+    for (let charIndex = 0; charIndex < searchWord.length; charIndex++) {
+        let suggestions = []
         result.push([]);
-        for (let i = 0; i < products.length; ++i) {
-            if (products[i][idx] === searchWord[idx]) {
-                next.push(products[i]);
-                result[idx].length < 3 && result[idx].push(products[i]);
+
+        for (let product of products) {
+            if (product[charIndex] === searchWord[charIndex]) {
+                suggestions.push(product);
+                if (result[charIndex].length < 3) {
+                    result[charIndex].push(product);
+                }
             }
         }
-        products = next;
+        // will save new possible suggestions at each character
+        products = suggestions;
     }
+
     return result;
 };
 
