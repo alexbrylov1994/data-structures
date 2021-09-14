@@ -32,6 +32,30 @@ function copyRandomList(head: Node | null): Node | null {
 
     let node = head;
 
+    while (node) {
+        map.set(node, new Node(node.val, null, null));
+        node = node.next;
+    }
+
+    node = head;
+
+    while (node) {
+        const newNode = map.get(node);
+        // newNode is a reference to the node,
+        // so we can use it to set it's next and random
+        newNode.next = map.get(node.next);
+        newNode.random = map.get(node.random);
+        node = node.next;
+    }
+
+    return map.get(head);
+};
+
+function copyRandomList2(head: Node | null): Node | null {
+    const map = new Map([[null, null]]);
+
+    let node = head;
+
     // fist pass, take each node and create a copy of node
     while (node) {
         map.set(node, new Node(node.val, null, null));
@@ -59,24 +83,4 @@ function copyRandomList(head: Node | null): Node | null {
     return newLD;
 };
 
-// function copyRandomList(head: Node | null): Node | null {
-//     const map = new Map([[null, null]]);
 
-//     let node = head;
-
-//     while (node) {
-//         map.set(node, new Node(node.val, null, null));
-//         node = node.next;
-//     }
-
-//     node = head;
-
-//     while (node) {
-//         const newNode = map.get(node);
-//         newNode.next = map.get(node.next);
-//         newNode.random = map.get(node.random);
-//         node = node.next;
-//     }
-
-//     return map.get(head);
-// };
