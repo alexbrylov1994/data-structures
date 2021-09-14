@@ -35,7 +35,7 @@ function topKFrequent(words: string[], k: number): string[] {
         }
 
         if (map[a] === map[b]) {
-            return -1;
+            return a.localeCompare(b);
         }
     });
 
