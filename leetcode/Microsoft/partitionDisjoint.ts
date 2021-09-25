@@ -23,7 +23,7 @@
 function partitionDisjoint(nums: number[]): number {
     let currMax = nums[0];
     let possibleMax = nums[0];
-    iletnt length = 1;
+    let length = 1;
 
     for (let i = 1; i < nums.length; ++i) {
         if (nums[i] < currMax) {
