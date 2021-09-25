@@ -29,6 +29,17 @@
 // myHashMap.remove(2); // remove the mapping for 2, The map is now [[1,1]]
 // myHashMap.get(2);    // return -1 (i.e., not found), The map is now [[1,1]
 
+// As one of the most intuitive implementations, we could adopt the modulo operator as the hash function, 
+// since the key value is of integer type. In addition, in order to minimize the potential collisions, 
+// it is advisable to use a prime number as the base of modulo, e.g. 2069.
+
+// We organize the storage space as an array where each element is indexed with 
+// the output value of the hash function.
+
+// In case of collision, where two different keys are mapped to the same address, 
+// we use a bucket to hold all the values. The bucket is a container that hold all the values 
+// that are assigned by the hash function. 
+// We could use either a LinkedList or an Array to implement the bucket data structure.
 class Bucket {
     bucket: any[];
     constructor() {
