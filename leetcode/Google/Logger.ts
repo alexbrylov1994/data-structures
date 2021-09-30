@@ -34,8 +34,7 @@ class Logger {
     }
 
     shouldPrintMessage(timestamp: number, message: string): boolean {
-        console.log(message, timestamp);
-        //  Time can be 0
+        //  Time can be 0, so need to check if it exists
         if (this.hash[message] === undefined) {
             this.hash[message] = timestamp;
             return true;
