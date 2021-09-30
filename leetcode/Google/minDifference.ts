@@ -44,10 +44,8 @@ function minDifference(nums: number[]): number {
         return 0;
     }
     nums.sort((a, b) => a - b);
-
     let N = nums.length - 1 - 3;
     let min = Infinity;
-
     for (let i = 0; i < 4; i++) {
         min = Math.min(min, nums[N] - nums[i]);
         N++;
