@@ -42,13 +42,15 @@ function getImportance(employees: Employee[], id: number): number {
     return dfs(id);
 
     function dfs(id) {
-        const info = hashMap[id] as Employee;
-        let res = info.importance;
-
-        for (const subordinate of info.subordinates) {
+        const hireUp = hashMap[id] as Employee;
+        let res = hireUp.importance;
+        // we check every subordinate of hire up
+        for (const subordinate of hireUp.subordinates) {
+            // and subordinates of subordinates
             res += dfs(subordinate);
         }
 
+        // prop answer up;
         return res;
     }
 };
