@@ -35,14 +35,14 @@ class Employee {
 
 
 function getImportance(employees: Employee[], id: number): number {
-    const directory = new Map();
+    const hashMap = {};
 
-    employees.forEach(employee => directory.set(employee.id, employee));
+    employees.forEach(employee => hashMap[employee.id] = employee);
 
     return dfs(id);
 
     function dfs(id) {
-        const info = directory.get(id) as Employee;
+        const info = hashMap[id] as Employee;
         let res = info.importance;
 
         for (const subordinate of info.subordinates) {
@@ -52,3 +52,5 @@ function getImportance(employees: Employee[], id: number): number {
         return res;
     }
 };
+
+// space and time 0(N)
