@@ -27,12 +27,12 @@ class TreeNode {
     }
 }
 
-
+// https://youtu.be/aaSFzFfOQ0o
 function delNodes(root: TreeNode | null, to_delete: number[]): Array<TreeNode | null> {
     const res = [];
     const set = new Set(to_delete);
 
-    function dfs(node,) {
+    function dfs(node) {
         if (node == null) return null;
 
         const left = dfs(node.left);
@@ -41,12 +41,15 @@ function delNodes(root: TreeNode | null, to_delete: number[]): Array<TreeNode | 
         if (set.has(node.val)) {
             if (left) res.push(left);
             if (right) res.push(right);
+            // deletes node, returns null
             return null;
         }
 
+        // we build tree up
         node.left = left;
         node.right = right;
 
+        // prop up
         return node;
     }
 
