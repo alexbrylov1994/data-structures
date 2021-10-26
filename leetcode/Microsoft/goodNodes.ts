@@ -38,7 +38,7 @@ class TreeNode {
     }
 }
 
-
+// https://www.youtube.com/watch?v=7cp5imvDzl4&t=427s&ab_channel=NeetCode
 function goodNodes(root: TreeNode | null): number {
     let numGoodNodes = 0;
 
