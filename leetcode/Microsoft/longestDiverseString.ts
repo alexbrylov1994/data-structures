@@ -30,23 +30,36 @@
 // If character with biggest value has already been added twice, add second biggest
 // if second biggest count is 0 we're done
 
-
 function longestDiverseString(a: number, b: number, c: number): string {
-    const len = a + b + c;
+    let len = a + b + c;
     const chars = [
         ['a', a],
         ['b', b],
         ['c', c]
     ];
+
     const result = [];
     while (result.length < len) {
-        const i = result.length;
+        const i = result.length - 1;
         chars.sort(([c1, c1count], [c2, c2count]) => (c2count as number) - (c1count as number));
-        const char =
-            result[i - 1] === result[i - 2] && result[i - 1] === chars[0][0] ? chars[1] : chars[0];
+
+        let char;
+        // check last 2 elements in array if the same
+        // and check if it's matching top of stuck
+
+        // if last two same and top of chars stack is same, pick second from stack
+        // else first (largest)
+        if (result[i] === result[i - 1] && result[i] === chars[0][0]) {
+            char = chars[1];
+        } else {
+            char = chars[0];
+        }
+
         if (char[1] === 0) break;
         result.push(char[0]);
+
         char[1] = (char[1] as number) - 1;
     }
+
     return result.join('');
 }
