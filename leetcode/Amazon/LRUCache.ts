@@ -29,31 +29,33 @@
 // lRUCache.get(3);    // return 3
 // lRUCache.get(4);    // return 4
 
+// https://www.youtube.com/watch?v=7ABFKPK2hD4
 class DLinkedNode {
-    value: any;
-    key: any;
     prev: DLinkedNode;
     next: DLinkedNode;
-
-    constructor(value = null, key = null, left = null, right = null) {
-        this.value = value;
+    val: number
+    key: number
+    constructor(key = null, val = null, prev = null, next = null) {
         this.key = key;
-        this.prev = left;
-        this.next = right;
+        this.val = val;
+        this.prev = prev;
+        this.next = next;
     }
-}
-
+};
 
 class LRUCache {
+    hash: object;
+    size: number;
     head: DLinkedNode = new DLinkedNode();
     tail: DLinkedNode = new DLinkedNode();
-    hashmap = {};
-    maximumSize: number;
-    currentSize = 0;
+    count: number;
     constructor(capacity: number) {
+        this.size = capacity;
+        this.count = 0;
+        this.hash = {};
+
         this.head.next = this.tail;
         this.tail.prev = this.head;
-        this.maximumSize = capacity;
     }
 
     addNode(node) {
@@ -64,52 +66,57 @@ class LRUCache {
         this.head.next = node;
     }
 
-    removeNode(node) {
-        let prev = node.prev;
-        let next = node.next;
+    deleteNode(node) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
 
-        prev.next = next;
-        next.prev = prev;
+        // let prev = node.prev;
+        // let next = node.next;
+
+        // prev.next = next;
+        // next.prev = prev;
     }
 
     moveToHead(node) {
-        this.removeNode(node);
+        this.deleteNode(node);
         this.addNode(node);
     }
 
     removeTail() {
-        let prev = this.tail.prev.prev;
-        this.tail.prev = prev;
-        prev.next = this.tail;
+        this.tail.prev.prev.next = this.tail
+        this.tail.prev = this.tail.prev.prev;
+        // let prev = this.tail.prev.prev;
+        // this.tail.prev = prev;
+        // prev.next = this.tail;
+    }
+
+    checkSize() {
+        if (this.count > this.size) {
+            delete this.hash[this.tail.prev.key];
+            this.removeTail();
+            this.count--
+        }
     }
 
     get(key: number): number {
-        if (this.hashmap[key]) {
-            this.moveToHead(this.hashmap[key])
-            return this.hashmap[key].value;
+        if (this.hash[key]) {
+            this.moveToHead(this.hash[key]);
+            return this.hash[key].val;
         } else {
             return -1;
         }
     }
 
-    checkSize() {
-        if (this.currentSize > this.maximumSize) {
-            let tail = this.tail.prev;
-            delete this.hashmap[tail.key];
-            this.removeTail();
-            this.currentSize--;
-        }
-    }
-
     put(key: number, value: number): void {
-        if (this.hashmap[key]) {
-            this.moveToHead(this.hashmap[key]);
-            this.hashmap[key].value = value;
+        if (this.hash[key]) {
+            let node = this.hash[key];
+            this.moveToHead(node);
+            node.val = value;
         } else {
-            let newNode = new DLinkedNode(value, key);
-            this.hashmap[key] = newNode;
+            let newNode = new DLinkedNode(key, value);
+            this.hash[key] = newNode;
             this.addNode(newNode);
-            this.currentSize++;
+            this.count++;
             this.checkSize();
         }
     }
