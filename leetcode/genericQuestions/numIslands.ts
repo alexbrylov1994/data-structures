@@ -70,31 +70,34 @@ function numIslands(grid: string[][]): number {
     return islandCount;
 }
 
-const dfs = function (grid, currentRow, currentCol) {
-    if (currentRow < 0 || currentRow >= grid.length || currentCol < 0 || currentCol >= grid[0].length) return;
+const dfs = (currRow, currCol, grid) => {
+    grid[currRow][currCol] = '0'
 
-    if (grid[currentRow][currentCol] === 1) {
-        grid[currentRow][currentCol] = 0;
+    for (let dir of directions) {
+        let nextRow = currRow + dir[0];
+        let nextCol = currCol + dir[1];
 
-        for (let i = 0; i < directions.length; i++) {
-            const currentDir = directions[i];
-            const row = currentDir[0];
-            const col = currentDir[1];
-            dfs(grid, currentRow + row, currentCol + col);
+        if (nextRow < 0 || nextRow >= grid.length || nextCol < 0 || nextCol >= grid[0].length || grid[nextRow][nextCol] === '0') {
+            continue;
+        }
+
+        if (grid[nextRow][nextCol] === '1') {
+            // grid[nextRow][nextCol] = '0'
+            dfs(nextRow, nextCol, grid);
         }
     }
 }
 
-const numberOfIslandsDFS = function (grid) {
+const numIslandsDFS = function (grid) {
     if (!grid.length) return 0;
 
     let islandCount = 0;
 
     for (let row = 0; row < grid.length; row++) {
         for (let col = 0; col < grid[0].length; col++) {
-            if (grid[row][col] === 1) {
+            if (grid[row][col] === '1') {
                 islandCount++;
-                dfs(grid, row, col);
+                dfs(row, col, grid);
             }
         }
     }
