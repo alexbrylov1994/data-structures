@@ -28,25 +28,41 @@
 // Note that we only care about characters that are still in the string at the end (i.e. frequency of 0 is ignored).
 
 function minDeletions(s: string): number {
-    let dict = {};
+    let hash = {}
 
     for (let char of s) {
-        dict[char] ? dict[char] += 1 : dict[char] = 1;
-    }
-
-    let arr = Object.values(dict).sort((a, b) => (a as number) - (b as number));
-    let seen = new Set();
-    let deletions = 0;
-
-    for (let count of arr) {
-        if (!seen.has(count)) seen.add(count);
-        else {
-            while (seen.has(count)) {
-                count = (count as number) - 1;
-                deletions++;
-            }
-            if (count > 0) seen.add(count);
+        if (hash[char]) {
+            hash[char]++
+        } else {
+            hash[char] = 1;
         }
     }
-    return deletions;
+
+    let charFrequencies = Object.values(hash).sort((a, b) => (a as number) - (b as number));
+
+    let set = new Set();
+    let delitions = 0;
+
+    // we use set to find find if we have number added
+    // if yes decrease until not in set 
+    for (let frequency of charFrequencies) {
+        if (!set.has(frequency)) {
+            set.add(frequency);
+        } else {
+            // reduce number until 
+            // we don't have the same one in the set
+            while (set.has(frequency)) {
+                (frequency as number)--;
+                delitions++;
+            }
+
+            // add new char frequency after N delitions
+            if (frequency > 0) {
+                set.add(frequency);
+            }
+        }
+    }
+    return delitions;
 };
+
+// time nLogN, space (N)
