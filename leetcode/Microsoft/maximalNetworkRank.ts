@@ -24,33 +24,45 @@
 // Output: 5
 // Explanation: The network rank of 2 and 5 is 5. Notice that all the cities do not have to be connected.
 
+// https://www.youtube.com/watch?v=n4WaTxnkxjU&ab_channel=Informatika
 function maximalNetworkRank(n: number, roads: number[][]): number {
-    const graph = [];
+    // const graph = [];
+    const graph = {};
+    const counts = {};
     for (let i = 0; i < n; i++) {
-        graph.push(new Array(n).fill(0));
+        graph[i] = new Set();
+        counts[i] = 0;
     }
 
-    const counts = new Array(n).fill(0);
+    // const counts = new Array(n).fill(0);
     for (let road of roads) {
         counts[road[0]]++;
         counts[road[1]]++;
-        graph[road[0]][road[1]] = graph[road[1]][road[0]] = 1;
+
+        // we use sets so later we can check if two cities contain other city in it's set
+        // if yes, there is a road between them (1) else no roads (0)
+        graph[road[0]].add(road[1]);
+        graph[road[1]].add(road[0]);
     }
 
     let max = 0;
     for (let i = 0; i < n; i++) {
-        for (let j = 0; j < n; j++) {
-            if (i === j) {
-                continue;
-            }
+        for (let j = i + 1; j < n; j++) {
+            // A - total connection for one city
+            // B - total connection for another city
+            // C - connection or no connection (road) between A and B
+            // A + B (conections for each cities) - C (road connecting directicly 2 cities)
+            let A = counts[i];
+            let B = counts[j];
+            let C = graph[i].has(j) && graph[j].has(i) ? 1 : 0;
 
-            const curr = counts[i] + counts[j] - (graph[i][j] === 1 ? 1 : 0);
+            max = Math.max(max, A + B - C);
 
-            max = Math.max(curr, max);
         }
     }
 
     return max;
 };
+
 // runtime: O(n^2)
 
