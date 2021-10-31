@@ -17,56 +17,60 @@ function spiralOrder(matrix: number[][]): number[] {
     }
     let result = [];
     // Left Boundry
-    let colStart = 0;
+    let left = 0;
     // Right Boundry
-    let colEnd = matrix[0].length - 1;
+    let right = matrix[0].length - 1;
     // Top Boundry
-    let rowStart = 0;
+    let top = 0;
     // Bottom Boundry
-    let rowEnd = matrix.length - 1;
+    let bottom = matrix.length - 1;
 
     while (true) {
-        // top
-        for (let i = colStart; i <= colEnd; i++) {
-            result.push(matrix[rowStart][i]);
+
+        // Left to Right
+        for (let i = left; i <= right; i++) {
+            result.push(matrix[top][i]);
         }
 
-        rowStart++;
-
-        if (rowStart > rowEnd) {
+        // once we reach right, top boundry increases by one, goes from top to bottom of matrix
+        top++;
+        if (top > bottom) {
             return result;
         }
 
-        // right
-        for (let i = rowStart; i <= rowEnd; i++) {
-            result.push(matrix[i][colEnd]);
+        // Top to Bottom
+        for (let i = top; i <= bottom; i++) {
+            result.push(matrix[i][right]);
         }
 
-        colEnd--;
+        // once we reach bottom, right boundry decreases by one, goes from right to left of matrix
+        right--;
 
-        if (colEnd < colStart) {
+        if (right < left) {
             return result;
         }
 
-        // bottom
-        for (let i = colEnd; i >= colStart; i--) {
-            result.push(matrix[rowEnd][i]);
+        // Left to Right
+        for (let i = right; i >= left; i--) {
+            result.push(matrix[bottom][i]);
         }
 
-        rowEnd--;
+        // once we reach left, bottom boundry decreases by one, goes from bottom to up of matrix
+        bottom--;
 
-        if (rowEnd < rowStart) {
+        if (bottom < top) {
             return result;
         }
 
-        // left
-        for (let i = rowEnd; i >= rowStart; i--) {
-            result.push(matrix[i][colStart]);
+        // Bottom to Up
+        for (let i = bottom; i >= top; i--) {
+            result.push(matrix[i][left]);
         }
 
-        colStart++;
+        // once we reach top, left boundry increases by one, goes from left to right of matrix
+        left++;
 
-        if (colStart > colEnd) {
+        if (left > right) {
             return result;
         }
     }
