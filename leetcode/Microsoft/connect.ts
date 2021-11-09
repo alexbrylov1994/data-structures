@@ -37,24 +37,61 @@ class Node {
     }
 }
 
+// my solution
+// function connect(root: Node | null): Node | null {
+//     if(!root) {
+//         return root;
+//     }
+
+//     let queue = [root];
+
+//     while (queue.length) {
+
+//         if (queue.length > 1) {
+//             for (let i = 0; i < queue.length - 1; i++) {
+//                 queue[i].next = queue[i + 1];
+//             }
+//         }
+
+//         let length = queue.length;
+//         let count = 0;
+
+
+//         while (count < length) {
+
+//             let current = queue.shift();
+//             if (current.left) {
+//                 queue.push(current.left);
+//             }
+
+//             if (current.right) {
+//                 queue.push(current.right);
+//             }
+
+//             count++;
+//         }
+//     }
+
+//     return root;
+// };
+// to improve time can have 2d array, each element is a level, then itterate it, connect,done
+
 
 function connect(root: Node | null): Node | null {
-    const queue = [root];
-    let tail = root;
-    // BFS
-    while (queue.length) {
-        const curr = queue.shift();
-        if (!curr) break;
-        if (curr.left !== null) queue.push(curr.left);
-        if (curr.right !== null) queue.push(curr.right);
-        if (curr === tail) {
-            curr.next = null;
-            tail = queue.length > 0 ? queue[queue.length - 1] : null;
-        } else {
-            curr.next = queue[0];
+    if (root == null) return root;
+    let queue = [root];
+    while (queue.length != 0) {
+        let next = [];
+        while (queue.length != 0) {
+            let node = queue.shift();
+            node.next = queue[0] || null;
+            if (node.left != null) {
+                next.push(node.left);
+                next.push(node.right);
+            }
         }
+        queue = next;
     }
     return root;
-}
-
+};
 // O(N) space and time
