@@ -20,33 +20,36 @@
 // Output: false
 
 function exist(board: string[][], word: string): boolean {
-    let seen = new Set();
     var dfs = function (row, col, i) {
-        if (i === word.length - 1) {
-            return true;
-        }
-
-        if (row < 0 || row >= board.length || col < 0 || col >= board[0].length || seen.has([row, col]) || word[i] !== board[row][col]) {
+        if (row < 0 || row >= board.length || col < 0 || col >= board[0].length || word[i] !== board[row][col]) {
             return false;
         }
 
+        if (i === word.length-1) {
+            return true;
+        }
+
         // fix this, need to mark board and reset?
-        seen.add([row, col]);
 
         // This can be done with strings:
 
         // let s=new Set();
         // s.add("1,1");
         // s.add("2,2");
-        console.log('Add', seen);
+        board[row][col] = null 
+        console.log('X: ', row,' ', col);
+        if (dfs(row + 1, col, i + 1) ||  dfs(row - 1, col, i + 1)  || dfs(row, col + 1, i + 1) || dfs(row, col -1, i + 1)) {
+            return true;
+        }
 
-        return dfs(row + 1, col, i + 1) ||  dfs(row - 1, col, i + 1)  || dfs(row, col + 1, i + 1) || dfs(row, col -1, i + 1);
+        // reset board
+        board[row][col] = word[i];
+
     }
 
     for (let row = 0; row < board.length; row++) {
         for (let column = 0; column < board[0].length; column++) {
             if (board[row][column] === word[0]) {
-                seen = new Set();
                 if (dfs(row, column, 0)) {
                     return true;
                 }
