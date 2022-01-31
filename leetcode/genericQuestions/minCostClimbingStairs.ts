@@ -48,3 +48,23 @@ function minCostClimbingStairsBottomUp(cost: number[]): number {
 
     return Math.min(dpOne, dpTwo);
 };
+
+// no DP
+// function minCostClimbingStairs(cost: number[]): number {
+
+//     let minSteps = []
+//     const dfs = (step, total) => {
+//         if (step >= cost.length) {
+//             return total;
+//         }
+
+//         if (cost[step] > 0) {
+//             total += cost[step]
+//         }
+
+//         return Math.min(dfs(step + 1, total),dfs(step + 2, total));
+        
+//     }
+
+//     return Math.min(dfs(0, 0), dfs(1,0));
+// };

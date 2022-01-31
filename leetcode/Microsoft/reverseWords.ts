@@ -68,4 +68,13 @@ function reverseWords(s: string): string {
     return res.join(' ');
 };
 
+// function reverseWords(s: string): string {
+//     s = s.trim();
+
+//     let stack = s.split(' ');
+//     stack = stack.filter(e => e !== '');
+
+//     return stack.reverse().join(' ');
+// };
+
 // Time and Space O(N)
